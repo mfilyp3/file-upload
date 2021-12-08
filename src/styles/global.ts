@@ -1,4 +1,3 @@
-
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -12,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-family:Arial, Helvetica, sans-serif;
         font-size: 14px;
-        background-color: #7159c1;
+        background-color: #40916C;
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
     }
@@ -22,4 +21,4 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-export { GlobalStyle }
+export { GlobalStyle };

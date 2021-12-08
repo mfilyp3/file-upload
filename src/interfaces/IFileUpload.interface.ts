@@ -8,4 +8,5 @@ export interface IFileUploadProps {
   uploaded: boolean;
   error: boolean;
   url: string;
+  deleteHash?: string;
 }

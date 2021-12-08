@@ -4,6 +4,6 @@ const api = axios.create({
   baseURL: "https://api.imgur.com/",
 });
 
-api.defaults.headers.common["Authorization"] = "Client-ID 769e6429728b214";
+api.defaults.headers.common["Authorization"] = "Client-ID fc7317ed70abed3";
 
 export { api };

@@ -3,17 +3,35 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import { MdCheckCircle, MdError, MdLink } from "react-icons/md";
 import { IFileUploadProps } from "../../interfaces/IFileUpload.interface";
 
-export function FilesList({ files }: any) {
+interface IFilesListProps {
+  files: IFileUploadProps[];
+  handleDelete(deleteHash: string): void;
+}
+
+export function FilesList({ files, handleDelete }: IFilesListProps) {
   return (
     <Container>
       {files.map((uploadedFiles: IFileUploadProps) => {
         return (
-          <li>
+          <li key={uploadedFiles.id}>
             <FileInfo>
               <Preview src={uploadedFiles.previewURL}></Preview>
               <div>
                 <strong>{uploadedFiles.name}</strong>
                 <span>{uploadedFiles.readableSize}</span>
+                {uploadedFiles.uploaded && !uploadedFiles.error && (
+                  <span>
+                    <button
+                      onClick={() => {
+                        handleDelete(
+                          uploadedFiles.deleteHash || uploadedFiles.id
+                        );
+                      }}
+                    >
+                      Excluir
+                    </button>
+                  </span>
+                )}
               </div>
             </FileInfo>
 
