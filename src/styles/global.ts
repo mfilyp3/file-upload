@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-family:Arial, Helvetica, sans-serif;
         font-size: 14px;
-        background-color: #40916C;
+        background: linear-gradient(to top, #40916C, #52B788);
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
     }

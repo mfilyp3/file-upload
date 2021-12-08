@@ -88,15 +88,13 @@ export function Upload() {
 
     if (deleteHashIsId) return;
 
+    setUploadedFiles((prev) =>
+      prev.filter((fileRemove) => fileRemove.deleteHash !== deleteHash)
+    );
+
     api
       .delete(`https://api.imgur.com/3/image/${deleteHash}`)
-      .then((response) => {
-        if (response.data.data === true) {
-          setUploadedFiles((prev) =>
-            prev.filter((fileRemove) => fileRemove.deleteHash !== deleteHash)
-          );
-        }
-      });
+      .then((response) => {});
     return;
   }
 
