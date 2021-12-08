@@ -5,6 +5,7 @@ import { useState } from "react";
 import filesize from "filesize";
 import { v4 as uuid } from "uuid";
 import { IFileUploadProps } from "../../interfaces/IFileUpload.interface";
+import { api } from "../../services/api";
 
 export function Upload() {
   const [uploadedFiles, setUploadedFiles] = useState<IFileUploadProps[]>([]);
@@ -28,14 +29,41 @@ export function Upload() {
       return prev.concat(filesUploaded);
     });
 
-    uploadedFiles.forEach();
+    uploadedFiles.forEach(allProcessUpload);
   }
 
-  function allProcessUpload(uploadedFile: IFileUploadProps) {
-    const data = new FormData();
-    data.append("file", uploadedFile.files, uploadedFile.name);
+  const updateProgressFiles = (id: string = "", payload: any) => {
+    const newUploadedFiles = uploadedFiles.map((file) => {
+      return id === file.id ? { ...file, ...payload } : file;
+    });
 
-    // TODO Send to backend
+    setUploadedFiles(newUploadedFiles);
+  };
+
+  function allProcessUpload(uploadedFile: IFileUploadProps) {
+    if (uploadedFile.progress >= 100 || uploadedFile.uploaded) return;
+
+    const data = new FormData();
+    data.append("image", uploadedFile.file);
+
+    api
+      .post("3/image", data, {
+        onUploadProgress: (e) => {
+          const progress = Number(Math.round((e.loaded * 100) / e.total));
+          updateProgressFiles(uploadedFile.id, { progress });
+        },
+      })
+      .then((response) => {
+        const {
+          data: { data },
+        } = response;
+
+        updateProgressFiles(uploadedFile.id, {
+          uploaded: true,
+          id: data.id,
+          url: data.link,
+        });
+      });
   }
 
   return (

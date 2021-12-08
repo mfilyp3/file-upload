@@ -1,5 +1,5 @@
 export interface IFileUploadProps {
-  files: File;
+  file: File;
   id: string;
   name: string;
   readableSize: string;

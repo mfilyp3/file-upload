@@ -1,17 +1,4 @@
-import styled, { css } from "styled-components";
-
-const dragActive = css`
-  border-color: #78e5d5;
-`;
-
-const dragReject = css`
-  border-color: #e57878;
-`;
-
-interface IProps {
-  isDragActive(): boolean;
-  isDragReject(): boolean;
-}
+import styled from "styled-components";
 
 export const DropContainer = styled.div.attrs({ className: "dropzone" })`
   border: 1px dashed #ddd;
