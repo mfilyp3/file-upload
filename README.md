@@ -4,6 +4,9 @@ Bibliotecas usadas:
 
 - Styled Components
 - React Dropzone
-- uuid,
+- uuid
 - react-circular-progressbar
 - filesize
+
+
+API utilizada: https://api.imgur.com/endpoints/image
